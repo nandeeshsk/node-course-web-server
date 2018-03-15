@@ -5,7 +5,7 @@ var hbs = require('hbs');
 
 var app=express();
 
-
+var port = process.env.PORT || 3000;
 app.use((req,res,next)=>{
 
    var now = new Date().toString();
@@ -22,7 +22,7 @@ app.use((req,res,next)=>{
    next();
 });
 
-// used for maintenance to block... notice next() is not called 
+// used for maintenance to block... notice next() is not called
 // app.use((req,res,next)=>{
 //   res.render('maintenance.hbs');
 // } );
@@ -85,6 +85,12 @@ app.get('/help',(req,res)=>{
   });
 });
 
+app.get('/project',(req,res)=>{
+  res.render('project.hbs',{
+    ProjectTitle : 'First sub project'
+
+  });
+});
 
 app.get('/bad',(req,res)=>{
 
@@ -95,6 +101,6 @@ app.get('/bad',(req,res)=>{
   // });
 
 });
-app.listen(3000,()=>{
+app.listen(port,()=>{
   console.log('Server is listening on port 3000');
 });
